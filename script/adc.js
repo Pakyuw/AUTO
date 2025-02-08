@@ -4,7 +4,7 @@ module.exports.config = {
   role: 3,
   hasPrefix: true,
   usage: '[reply or text]',
-  description: 'Apply code from buildtooldev and pastebin',
+  description: 'pag apply og code aron i sabe nako buloka nimo dol',
   credits: 'Deveploper',
   cooldown: 5
 };
@@ -28,10 +28,10 @@ module.exports.run = async function({
   if (type == "message_reply") {
     var text = messageReply.body;
   }
-  if (!text && !name) return api.sendMessage('Please reply to the link you want to apply the code to or write the file name to upload the code to pastebin!', threadID, messageID);
+  if (!text && !name) return api.sendMessage('pag apply og command para ma save bulok!', threadID, messageID);
   if (!text && name) {
     var data = fs.readFile(`${__dirname}/${args[0]}.js`, "utf-8", async (err, data) => {
-      if (err) return api.sendMessage(`Command ${args[0]} does not exist!`, threadID, messageID);
+      if (err) return api.sendMessage(`kini nga ${args[0]} command kay bugo na`, threadID, messageID);
       const {
         PasteClient
       } = require('pastebin-api');
@@ -75,11 +75,11 @@ module.exports.run = async function({
         if (index !== 0) return;
         var code = el.children[0].data;
         fs.writeFile(`${__dirname}/${args[0]}.js`, code, "utf-8", function(err) {
-          if (err) return api.sendMessage(`An error occurred while applying the new code to "${args[0]}.js".`, threadID, messageID);
+          if (err) return api.sendMessage(`error ang code kay gusto nako kanang nindot "${args[0]}.js".`, threadID, messageID);
           return api.sendMessage(`Added this code "${args[0]}.js", use command load to use!`, threadID, messageID);
         });
       });
     });
     return;
   }
-}
+        }
